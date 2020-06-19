@@ -2,9 +2,12 @@ package pro.edu;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -45,6 +48,24 @@ public class Main {
         finish = LocalDateTime.now();
 
         System.out.println(ChronoUnit.MILLIS.between(start, finish) + " ms");
+
+        List<String> the14thOctoberLogs =  Files.lines(Paths.get("/home/george/Desktop/logs.txt"))
+                .filter(line -> line.contains("2019-10-13"))
+                .collect(Collectors.toList());
+
+        String logs3 = "";
+
+        for (String line :the14thOctoberLogs){
+            logs3 += line + System.lineSeparator();
+        }
+
+        Path path = Paths.get("/home/george/Desktop/logs4.txt");
+
+        Files.write(path, logs3.getBytes());
+
+
+
+
 
     }
 }
